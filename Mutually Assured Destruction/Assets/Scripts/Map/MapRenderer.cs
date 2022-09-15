@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class MapRenderer : MonoBehaviour
 {
+    private static MapRenderer instance;
+    public static MapRenderer Instance { get { return instance; } }
+
+
+    private void Reset()
+    {
+        if (instance == null || instance != this)
+        {
+            instance = this;
+        }
+    }
+    private void Awake()
+    {
+        if (instance == null || instance != this)
+        {
+            instance = this;
+        }
+    }
+
     public SpriteRenderer screen;
     public GameMap map;
     public Texture2D displayMap;

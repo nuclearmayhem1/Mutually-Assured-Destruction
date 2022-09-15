@@ -12,7 +12,7 @@ public class Map : ScriptableObject
 }
 
 [System.Serializable]
-public class Nation
+public struct Nation
 {
     public Color color;
     public int ID;

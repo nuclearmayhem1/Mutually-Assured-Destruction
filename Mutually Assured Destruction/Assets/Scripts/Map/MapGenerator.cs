@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-
+    public GameManager gameManager;
+    public MapRenderer mapeRenderer;
     public Map currentMap;
     [HideInInspector] Map currentMapCheck;
     public Texture2D terrainMap;
     public Texture2D nationMap;
     public Texture2D waterMap;
-    public Vector2Int mapSize;
+    [HideInInspector]public int sizePower;
 
     public List<Nation> nations = new List<Nation>();
 
+    [Range(0, 5)] public int extraWidth = 2;
+
     public void ResizeMaps()
     {
-        terrainMap.Reinitialize(mapSize.x, mapSize.y);
-        nationMap.Reinitialize(mapSize.x, mapSize.y);
+        
+    }
+
+    public void ApplyMap()
+    {
+        gameManager.nations = new List<Nation>();
+        gameManager.nations.AddRange(nations);
+        GameMap map = new GameMap();
+        map.terrainMap = terrainMap;
+        map.nationMap = nationMap;
+        map.waterMap = waterMap;
+        mapeRenderer.map = map;
     }
 
     public void ReadNationMap()
@@ -25,15 +38,16 @@ public class MapGenerator : MonoBehaviour
         nations = new List<Nation>();
         Color32[] nationPixels = nationMap.GetPixels32();
         Color lastColor = Color.black;
-        Nation lastNation = null;
+        int lastNation = -1;
+        List<int> nationAreias = new List<int>();
 
         foreach (Color pixel in nationPixels)
         {
             if (pixel == lastColor)
             {
-                if (lastNation != null)
+                if (lastNation != -1)
                 {
-                    lastNation.territoryArea++;
+                    nationAreias[lastNation]++;
                 }
             }
             else
@@ -44,8 +58,8 @@ public class MapGenerator : MonoBehaviour
                     {
                         if (nations[i].color == pixel)
                         {
-                            nations[i].territoryArea++;
-                            lastNation = nations[i];
+                            nationAreias[i]++;
+                            lastNation = nations[i].ID;
                             goto end;
                         }
                     }
@@ -54,18 +68,29 @@ public class MapGenerator : MonoBehaviour
                     newNation.ID = nations.Count;
                     newNation.color = pixel;
                     nations.Add(newNation);
-                    lastNation = newNation;
+                    lastNation = newNation.ID;
+                    nationAreias.Add(1);
                     end:;
                     lastColor = pixel;
                 }
                 else
                 {
                     lastColor = pixel;
-                    lastNation = null;
+                    lastNation = -1;
                 }
             }
         }
 
+        for (int i = 0; i < nations.Count; i++)
+        {
+            int areia = nations[i].territoryArea + nationAreias[i];
+            Nation nationF = new Nation();
+            nationF.name = nations[i].name;
+            nationF.ID = nations[i].ID;
+            nationF.color = nations[i].color;
+            nationF.territoryArea = areia;
+            nations[i] = nationF;
+        }
     }
 
     private void OnValidate()
