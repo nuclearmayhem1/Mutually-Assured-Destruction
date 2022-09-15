@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrainMap: {fileID: 2800000, guid: 423877004caf10247a2203d03aadda07, type: 3}
   nationMap: {fileID: 2800000, guid: 9b2b90a18c2de8c4ca839568c9b78873, type: 3}
+  waterMap: {fileID: 2800000, guid: 9b0e9d4b262f4ce4585fc683a0d98ccd, type: 3}
   nations:
   - color:
       serializedVersion: 2

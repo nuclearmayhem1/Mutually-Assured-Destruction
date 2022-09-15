@@ -7,15 +7,17 @@ public class Map : ScriptableObject
 {
     public Texture2D terrainMap;
     public Texture2D nationMap;
+    public Texture2D waterMap;
     public List<Nation> nations;
 }
 
 [System.Serializable]
-public struct Nation
+public class Nation
 {
-    public Color32 color;
+    public Color color;
     public int ID;
     public string name;
     public string LeaderTitle;
     public List<Character> characters;
+    public int territoryArea;
 }
