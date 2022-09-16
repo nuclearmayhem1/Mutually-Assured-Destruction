@@ -29,6 +29,7 @@ public class PlaceText : MonoBehaviour
             GameObject newTitle = Instantiate(titlePrefab, pos, Quaternion.identity, transform);
             newTitle.transform.localScale *= nations[i].bounds.size.magnitude / 2000;
             newTitle.GetComponentInChildren<Text>().text = nations[i].name;
+            newTitle.GetComponent<CountryTitle>().nationID = nations[i].ID;
 
         }
 
