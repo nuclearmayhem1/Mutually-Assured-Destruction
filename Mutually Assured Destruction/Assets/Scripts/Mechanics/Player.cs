@@ -15,6 +15,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int nationID = -1;
+    public Nation nation;
 
 }

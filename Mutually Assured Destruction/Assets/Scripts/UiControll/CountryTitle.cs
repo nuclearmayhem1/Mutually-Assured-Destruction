@@ -5,14 +5,14 @@ using UnityEngine.EventSystems;
 
 public class CountryTitle : MonoBehaviour, IPointerClickHandler
 {
-    public int nationID = -1;
+    public Nation nation;
 
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        if (Player.Instance.nationID == -1)
+        if (Player.Instance.nation.ID == -1)
         {
-            Player.Instance.nationID = nationID;
+            Player.Instance.nation = nation;
         }
     }
 }
