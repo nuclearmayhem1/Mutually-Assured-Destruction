@@ -34,8 +34,10 @@ public class MapGenerator : MonoBehaviour
 
     public void ApplyMap()
     {
-        gameManager.nations = new List<Nation>();
-        gameManager.nations.AddRange(nations);
+        for (int i = 0; i < nations.Count; i++)
+        {
+            gameManager.nations[i] = nations[i].Clone();
+        }
         GameMap map = new GameMap();
         map.terrainMap = terrainMap;
         map.nationMap = nationMap;
