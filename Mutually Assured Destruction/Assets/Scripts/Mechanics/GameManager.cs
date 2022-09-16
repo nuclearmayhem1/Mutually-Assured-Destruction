@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
-
     private void Awake()
     {
         if (instance == null || instance != this)

@@ -29,6 +29,7 @@ public class MapRenderer : MonoBehaviour
     private MapMode lastMode;
     public MapMode mapMode;
     public Sprite mapSprite;
+    public Vector2 mapBounds;
 
     private void OnValidate()
     {
@@ -37,9 +38,10 @@ public class MapRenderer : MonoBehaviour
             displayMap = new Texture2D(map.terrainMap.width, map.terrainMap.height);
             displayMap.name = "Display map";
             displayMap.filterMode = FilterMode.Point;
-            mapSprite = Sprite.Create(displayMap, new Rect(0, 0, map.terrainMap.width, map.terrainMap.height), Vector2.one / 2);
+            mapSprite = Sprite.Create(displayMap, new Rect(0, 0, map.terrainMap.width, map.terrainMap.height), Vector2.zero, 100);
             mapSprite.name = "Display sprite";
             screen.sprite = mapSprite;
+            mapBounds = new Vector2(map.terrainMap.width / 100f, map.terrainMap.height / 100f);
         }
         if (mapMode != lastMode)
         {

@@ -30,6 +30,10 @@ public class MapGeneratorEditor : Editor
         {
             generator.ApplyMap();
         }
+        if (GUILayout.Button(new GUIContent("Save map", "Save changes to the map asset")))
+        {
+            generator.SaveMap();
+        }
 
     }
 

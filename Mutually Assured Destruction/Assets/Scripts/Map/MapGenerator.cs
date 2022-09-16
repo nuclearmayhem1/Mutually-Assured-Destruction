@@ -22,6 +22,16 @@ public class MapGenerator : MonoBehaviour
         
     }
 
+    public void SaveMap()
+    {
+        currentMap.terrainMap = terrainMap;
+        currentMap.nationMap = nationMap;
+        currentMap.waterMap = waterMap;
+
+        currentMap.nations = new List<Nation>();
+        currentMap.nations.AddRange(nations);
+    }
+
     public void ApplyMap()
     {
         gameManager.nations = new List<Nation>();
@@ -105,7 +115,7 @@ public class MapGenerator : MonoBehaviour
                 nationMap = null;
                 waterMap = null;
 
-                nations = new List<Nation>();
+                nations = null;
             }
             else
             {
