@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public GameManager gameManager;
-    public MapRenderer mapeRenderer;
+    public MapRenderer mapRenderer;
     public Map currentMap;
     [HideInInspector] Map currentMapCheck;
     public Texture2D terrainMap;
@@ -40,7 +40,8 @@ public class MapGenerator : MonoBehaviour
         map.terrainMap = terrainMap;
         map.nationMap = nationMap;
         map.waterMap = waterMap;
-        mapeRenderer.map = map;
+        mapRenderer.map = map;
+
     }
 
     public void ReadNationMap()
@@ -51,9 +52,9 @@ public class MapGenerator : MonoBehaviour
         int lastNation = -1;
         List<int> nationAreias = new List<int>();
 
-        foreach (Color pixel in nationPixels)
+        for (int i = 0; i < nationPixels.Length; i++)
         {
-            if (pixel == lastColor)
+            if (nationPixels[i] == lastColor)
             {
                 if (lastNation != -1)
                 {
@@ -62,30 +63,30 @@ public class MapGenerator : MonoBehaviour
             }
             else
             {
-                if (pixel != Color.black)
+                if (nationPixels[i] != Color.black)
                 {
-                    for (int i = 0; i < nations.Count; i++)
+                    for (int x = 0; x < nations.Count; x++)
                     {
-                        if (nations[i].color == pixel)
+                        if (nations[x].color == nationPixels[i])
                         {
-                            nationAreias[i]++;
-                            lastNation = nations[i].ID;
+                            nationAreias[x]++;
+                            lastNation = nations[x].ID;
                             goto end;
                         }
                     }
                     Nation newNation = new Nation();
                     newNation.name = "Nation " + nations.Count;
                     newNation.ID = nations.Count;
-                    newNation.color = pixel;
+                    newNation.color = nationPixels[i];
                     nations.Add(newNation);
                     lastNation = newNation.ID;
                     nationAreias.Add(1);
                     end:;
-                    lastColor = pixel;
+                    lastColor = nationPixels[i];
                 }
                 else
                 {
-                    lastColor = pixel;
+                    lastColor = nationPixels[i];
                     lastNation = -1;
                 }
             }
@@ -99,8 +100,43 @@ public class MapGenerator : MonoBehaviour
             nationF.ID = nations[i].ID;
             nationF.color = nations[i].color;
             nationF.territoryArea = areia;
+            Rect bounds = new Rect(-1, -1, -1, -1);
+
+            for (int y = 0; y < nationPixels.Length; y++)
+            {
+                if (nationPixels[y] == nationF.color)
+                {
+                    Vector2 pos = IndexToVector(y, nationMap.width);
+                    if (pos.x < bounds.x || bounds.x == -1)
+                    {
+                        bounds.x = pos.x;
+                    }
+                    else if (pos.x > bounds.width || bounds.width == -1)
+                    {
+                        bounds.width = pos.x - bounds.x;
+                    }
+
+                    if (pos.y < bounds.y || bounds.y == -1)
+                    {
+                        bounds.y = pos.y;
+                    }
+                    else if (pos.y > bounds.height || bounds.height == -1)
+                    {
+                        bounds.height = pos.y - bounds.y;
+                    }
+                }
+            }
+            nationF.bounds = bounds;
             nations[i] = nationF;
         }
+    }
+
+    public static Vector2Int IndexToVector(int index, int width)
+    {
+        int x = index % width;
+        int y = Mathf.FloorToInt(index / width);
+
+        return new Vector2Int(x, y);
     }
 
     private void OnValidate()

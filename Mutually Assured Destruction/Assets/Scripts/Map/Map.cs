@@ -20,4 +20,5 @@ public struct Nation
     public string LeaderTitle;
     public List<Character> characters;
     public int territoryArea;
+    public Rect bounds;
 }

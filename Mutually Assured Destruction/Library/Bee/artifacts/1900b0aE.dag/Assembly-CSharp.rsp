@@ -344,6 +344,7 @@
 "Assets/Scripts/Map/MapRenderer.cs"
 "Assets/Scripts/Map/TerrainGenerator.cs"
 "Assets/Scripts/Mechanics/GameManager.cs"
+"Assets/Scripts/Mechanics/PlaceText.cs"
 -langversion:9.0
 
 /deterministic
