@@ -3,12 +3,13 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 [Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]ser[Ss]ettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -275,3 +276,5 @@ Mutually Assured Destruction/Library/Artifacts/47/471d716c13dc19cb8d269b6b398548
 Mutually Assured Destruction/Library/Artifacts/80/80f62728b278c3784c518881c79528d0
 Mutually Assured Destruction/Library/Artifacts/b7/b7c6de8bcd8524fa22d7d44c53d173cc
 Mutually Assured Destruction/Library/Artifacts/e8/e84f5c09e8f12ba08a7bbd9931875774
+Mutually Assured Destruction/Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Environments.AdditionalFile.txt
+Mutually Assured Destruction/Library/Bee/artifacts/2000b0aE.dag/Unity.Services.Core.Configuration.Editor.dll
