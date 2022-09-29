@@ -24,4 +24,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    //Game variables
+    public float time = 0;
+    public float nuclearRisk = 0;
+
 }

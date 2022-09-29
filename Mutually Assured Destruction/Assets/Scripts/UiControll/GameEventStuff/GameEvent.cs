@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 [System.Serializable]
-public struct GameEvent
+public class GameEvent
 {
 
     //Content
@@ -13,17 +14,33 @@ public struct GameEvent
     public Sprite image;
 
     //Conditions
+    List<Predicate<Nation>> conditions;
 
-    List<int> s;
 
-    void eee()
-    {
-        s.Find(i => i>1);
-    }
 
     //Options
 
 
 
 
+}
+
+[Serializable]
+public delegate bool Condition(Nation nation);
+
+
+[Serializable]
+public class EventCondition
+{
+    public Operation operation;
+    [SerializeField] public Condition condition;
+    [SerializeField] public List<EventCondition> childConditions = new List<EventCondition>();
+}
+
+public enum Operation
+{
+    AND,
+    OR,
+    NAND,
+    NOR
 }
