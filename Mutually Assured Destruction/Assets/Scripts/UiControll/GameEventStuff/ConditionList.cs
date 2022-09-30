@@ -9,7 +9,8 @@ public static class ConditionList
     public static readonly Dictionary<string, Condition> conditions = new Dictionary<string, Condition>()
     {
         {"IsRelationsBad", IsRelationsBad},
-        {"IsPoor", (Nation n) => n.wealth < 0.2f }
+        {"IsPoor", (Nation n) => n.wealth < 0.2f },
+        {"AlwaysTrue", (Nation n) => true }
     };
 
 
@@ -27,15 +28,6 @@ public static class ConditionList
                     return true;
                 }
             }
-        }
-        return false;
-    }
-
-    public static bool IsPoor(Nation nation)
-    {
-        if (nation.wealth < 0.2f)
-        {
-            return true;
         }
         return false;
     }

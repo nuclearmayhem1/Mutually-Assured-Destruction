@@ -4,8 +4,8 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class GameEvent
+[CreateAssetMenu(fileName = "Event", menuName = "GameAssets/Event", order = 1)]
+public class GameEvent : ScriptableObject
 {
 
     //Content
@@ -14,33 +14,11 @@ public class GameEvent
     public Sprite image;
 
     //Conditions
-    List<Predicate<Nation>> conditions;
-
-
+    public EventCondition eventCondition;
 
     //Options
+    [SerializeField]public GameEventOption[] eventOptions;
 
 
 
-
-}
-
-[Serializable]
-public delegate bool Condition(Nation nation);
-
-
-[Serializable]
-public class EventCondition
-{
-    public Operation operation;
-    [SerializeField] public Condition condition;
-    [SerializeField] public List<EventCondition> childConditions = new List<EventCondition>();
-}
-
-public enum Operation
-{
-    AND,
-    OR,
-    NAND,
-    NOR
 }
