@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+
 [RequireComponent(typeof(Image))]
 public class TabButton : MonoBehaviour,  IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
@@ -33,21 +34,5 @@ public class TabButton : MonoBehaviour,  IPointerEnterHandler, IPointerClickHand
         background = GetComponent<Image>();
         tabGroup.Subscribe(this);
     }
-
-    public void Select()
-    {
-        if (onTabSelected != null)
-        {
-            onTabSelected.Invoke();
-        }
-    }
-      public void Deselect()
-    {
-        if (onTabDeselected != null)
-        {
-            onTabDeselected.Invoke();
-        }
-    }
-
 
 }
