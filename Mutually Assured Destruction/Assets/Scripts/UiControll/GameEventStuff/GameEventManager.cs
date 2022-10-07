@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class GameEventManager : MonoBehaviour
 {
     public GameEvent[] eventList;
 
+    public GameObject popupPrefab;
+    public GameObject buttonPrefab;
+    public GameObject parentObject;
 
 
     private void Start()
@@ -18,16 +23,33 @@ public class GameEventManager : MonoBehaviour
     public bool TestEvent(GameEvent gameEvent, Nation nation)
     {
         eventVariables vars = new eventVariables();
-
+        vars.owner = nation;
+        vars.opposingSide = new List<Nation>();
+        vars.neutralSide = new List<Nation>();
+        vars.ownerSide = new List<Nation>();
 
         if (TestCondition(gameEvent.eventCondition, ref vars))
         {
-            gameEvent.eventOptions[0].option.Invoke(vars, gameEvent.eventOptions[0].scale);
+            GameObject popupObj = Instantiate(popupPrefab, parentObject.transform);
+            Popup popup = popupObj.GetComponent<Popup>();
+            popup.title.text = gameEvent.title;
+            popup.image.sprite = gameEvent.image;
+
+            foreach (GameEventOption option in gameEvent.eventOptions)
+            {
+                GameObject button = Instantiate(buttonPrefab, popup.buttonLayout.transform);
+                button.GetComponentInChildren<Text>().text = option.title;
+
+                button.GetComponent<Button>().onClick.AddListener(() => option.option.Invoke(vars, option.scale));
+                button.GetComponent<Button>().onClick.AddListener(() => popup.DestroyThis());
+            }
+
             return true;
         }
 
         return false;
     }
+
 
 
     public bool TestCondition(EventCondition condition, ref eventVariables vars)

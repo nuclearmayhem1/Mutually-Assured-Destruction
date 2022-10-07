@@ -24,10 +24,10 @@ public class Nation
 
     //State
     public List<float> relations;
-    public List<Nation> rivals;
-    public List<Nation> friends;
-    public List<Nation> enemies;
-    public List<Nation> allies;
+    public List<int> rivals;
+    public List<int> friends;
+    public List<int> enemies;
+    public List<int> allies;
     public List<Character> characters;
     public int territoryArea;
     public float wealth;

@@ -14,6 +14,7 @@ public static class ConditionList
         {"Relations<Scale", (ref eventVariables v, float s) => RelationsLowerThan(ref v,s)},
         {"AllRivals", (ref eventVariables v, float s) => AllRivals(ref v,s)},
         {"RandomRival", (ref eventVariables v, float s) => RandomRival(ref v,s)},
+        {"Chance>Scale", (ref eventVariables v, float s) => Random.Range(0,1) > s},
     };
 
 
@@ -56,9 +57,9 @@ public static class ConditionList
     {
         if (vars.owner.rivals.Count > 0)
         {
-            foreach (Nation nation in vars.owner.rivals)
+            foreach (int nation in vars.owner.rivals)
             {
-                vars.opposingSide.Add(nation);
+                vars.opposingSide.Add(GameManager.Instance.nations[nation]);
             }
             return true;
         }
@@ -69,8 +70,7 @@ public static class ConditionList
     {
         if (vars.owner.rivals.Count > 0)
         {
-
-            vars.opposingSide.Add(vars.owner.rivals[Random.Range(0, vars.owner.rivals.Count)]);
+            vars.opposingSide.Add(GameManager.Instance.nations[vars.owner.rivals[Random.Range(0, vars.owner.rivals.Count)]]);
             return true;
         }
         return false;

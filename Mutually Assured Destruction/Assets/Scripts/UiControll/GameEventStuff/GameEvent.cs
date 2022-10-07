@@ -9,6 +9,7 @@ public class GameEvent : ScriptableObject
 {
 
     //Content
+    [TextArea()]
     public string title;
     public string content;
     public Sprite image;
