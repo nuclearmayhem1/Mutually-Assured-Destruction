@@ -42,6 +42,9 @@ public class Nation
     public float people;
     public float greed;
 
+    //Meta
+    public List<string> flags;
+
     public Nation(Color color = default, int iD = -1, string name = "", string leaderTitle = "", List<Character> characters = null, int territoryArea = 0, Rect bounds = default , List<float> relations = default,
         Sprite flag = default, float wealth = default, float population = default, float power = default, float trust = default, float aggresiveness = default, float stability = default,
         float security = default, float people = default, float greed = default)
@@ -64,6 +67,7 @@ public class Nation
         this.security = security;
         this.people = people;
         this.greed = greed;
+        this.flags = new List<string>();
     }
 
     public Nation Clone()

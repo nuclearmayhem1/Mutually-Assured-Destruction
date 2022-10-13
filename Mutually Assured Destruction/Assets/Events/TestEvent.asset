@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2630d1dfc4aa24eabaa77a0b53e4f6, type: 3}
+  m_Name: TestEvent
+  m_EditorClassIdentifier: 
+  title: Test event
+  content: A missile test is happening
+  image: {fileID: 0}
+  eventCondition:
+    conditionName:
+      conditionName: AlwaysTrue
+      selected: 0
+    scale: 0.5
+    operation: 0
+    childConditions: []
+  eventOptions:
+  - title: a
+    tooltip: 
+    optionName:
+      optionName: logScale
+      selected: 1
+    scale: 1
+    multipliers:
+      territoryAreaM: 0
+      wealthM: 0
+      populationM: 0
+      powerM: 0
+      trustM: 0
+      aggresivenessM: 0
+      stabilityM: 0
+      securityM: 0
+      peopleM: 0
+      greedM: 0
+  - title: b
+    tooltip: 
+    optionName:
+      optionName: logScale
+      selected: 1
+    scale: 2
+    multipliers:
+      territoryAreaM: 0
+      wealthM: 0
+      populationM: 0
+      powerM: 0
+      trustM: 0
+      aggresivenessM: 0
+      stabilityM: 0
+      securityM: 0
+      peopleM: 0
+      greedM: 0
+  - title: b
+    tooltip: 
+    optionName:
+      optionName: logScale
+      selected: 1
+    scale: 3
+    multipliers:
+      territoryAreaM: 0
+      wealthM: 0
+      populationM: 0
+      powerM: 0
+      trustM: 0
+      aggresivenessM: 0
+      stabilityM: 0
+      securityM: 0
+      peopleM: 0
+      greedM: 0
+  daysToWait: 10

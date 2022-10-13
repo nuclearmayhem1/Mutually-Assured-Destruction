@@ -20,6 +20,8 @@ public class GameEvent : ScriptableObject
     //Options
     [SerializeField]public GameEventOption[] eventOptions;
 
+    //Time
+    public float daysToWait = 10;
 
 
 }

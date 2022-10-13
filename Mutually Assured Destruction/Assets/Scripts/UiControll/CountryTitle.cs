@@ -7,12 +7,13 @@ public class CountryTitle : MonoBehaviour, IPointerClickHandler
 {
     public Nation nation;
 
-
-    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
+
         if (Player.Instance.nation.ID == -1)
         {
             Player.Instance.nation = nation;
         }
     }
+
 }

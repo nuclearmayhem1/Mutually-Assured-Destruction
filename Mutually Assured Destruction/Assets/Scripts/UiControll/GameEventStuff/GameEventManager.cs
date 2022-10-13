@@ -12,10 +12,37 @@ public class GameEventManager : MonoBehaviour
     public GameObject buttonPrefab;
     public GameObject parentObject;
 
+    [HideInInspector]public float[] eventCooldowns;
+
+    private void Awake()
+    {
+        eventCooldowns = new float[eventList.Length];
+        for (int i = 0; i < eventList.Length; i++)
+        {
+            eventCooldowns[i] = eventList[i].daysToWait;
+        }
+    }
 
     private void Start()
     {
-        TestEvent(eventList[0], GameManager.Instance.nations[0]);
+        GameManager.Instance.onNewDay += SpawnEvent;
+    }
+
+    public void SpawnEvent()
+    {
+        foreach (Nation nation in GameManager.Instance.nations)
+        {
+            for (int i = 0; i < eventList.Length; i++)
+            {
+                if (eventCooldowns[i] < GameManager.Instance.days)
+                {
+                    if (TestEvent(eventList[i], nation))
+                    {
+                        eventCooldowns[i] += eventList[i].daysToWait;
+                    }
+                }
+            }
+        }
     }
 
 
