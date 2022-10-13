@@ -37,11 +37,12 @@ public class GameManager : MonoBehaviour
     public float gameSpeed = 0;
 
     public bool forcePaused = false;
+    public bool userPaused = true;
 
     private float lastDay = 0;
     private void Update()
     {
-        if (!forcePaused)
+        if (!forcePaused && !userPaused)
         {
             days += gameSpeed * Time.deltaTime;
         }
@@ -51,6 +52,12 @@ public class GameManager : MonoBehaviour
             lastDay = days;
             onNewDay.Invoke();
         }
-
     }
+
+    public void pauseUnPause()
+    {
+        userPaused = !userPaused;
+    }
+
+
 }

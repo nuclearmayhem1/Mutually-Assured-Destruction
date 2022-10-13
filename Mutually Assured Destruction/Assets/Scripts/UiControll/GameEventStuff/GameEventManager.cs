@@ -39,6 +39,7 @@ public class GameEventManager : MonoBehaviour
                     if (TestEvent(eventList[i], nation))
                     {
                         eventCooldowns[i] += eventList[i].daysToWait;
+                        break;
                     }
                 }
             }
